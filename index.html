@@ -316,7 +316,7 @@ let matrixRunning=false;
 
 function goTo(n){if(n<0||n>=totalSlides||n===current||transitioning)return;transitioning=true;slides[current].classList.remove('active');dots[current].classList.remove('active');current=n;slides[current].classList.add('active');dots[current].classList.add('active');
 if(n===1)boom(200);
-if(n===3){const now=new Date(),bd=new Date(now.getFullYear(),2,21);if(now.toDateString()===bd.toDateString()){setTimeout(()=>boom(350),400);setTimeout(()=>boom(200),1200);setTimeout(()=>boom(150),2000)}else{boom(100)}}
+if(n===3){const now=new Date(),bd=new Date(now.getFullYear(),2,20);if(now.toDateString()===bd.toDateString()){setTimeout(()=>boom(350),400);setTimeout(()=>boom(200),1200);setTimeout(()=>boom(150),2000)}else{boom(100)}}
 if(n===2)setTimeout(runMatrixCountdown,400);
 setTimeout(()=>{transitioning=false},800);
 if(current>0)backBtn.classList.add('show');else backBtn.classList.remove('show')}
@@ -332,7 +332,7 @@ document.addEventListener('touchend',(e)=>{const diff=touchStartY-e.changedTouch
 document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')goTo(current+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')goTo(current-1)});
 
 // Countdown
-function tick(){const now=new Date(),y=now.getFullYear();let bd=new Date(y,2,21);const el=document.getElementById('countdown');if(now.toDateString()===bd.toDateString()){el.innerHTML='<p class="cd-today">\ud83c\udf82 Today Is Your Day! \ud83c\udf82</p>';return}if(bd<now)bd.setFullYear(y+1);const df=bd-now;const d=Math.floor(df/864e5),h=Math.floor(df/36e5%24),m=Math.floor(df/6e4%60),s=Math.floor(df/1e3%60);el.innerHTML=[['d',d,'days'],['h',h,'hours'],['m',m,'min'],['s',s,'sec']].map(([,v,l])=>'<div class="cd-box"><span class="cd-num">'+v+'</span><span class="cd-unit">'+l+'</span></div>').join('')}
+function tick(){const now=new Date(),y=now.getFullYear();let bd=new Date(y,2,20);const el=document.getElementById('countdown');if(now.toDateString()===bd.toDateString()){el.innerHTML='<p class="cd-today">\ud83c\udf82 Today Is Your Day! \ud83c\udf82</p>';return}if(bd<now)bd.setFullYear(y+1);const df=bd-now;const d=Math.floor(df/864e5),h=Math.floor(df/36e5%24),m=Math.floor(df/6e4%60),s=Math.floor(df/1e3%60);el.innerHTML=[['d',d,'days'],['h',h,'hours'],['m',m,'min'],['s',s,'sec']].map(([,v,l])=>'<div class="cd-box"><span class="cd-num">'+v+'</span><span class="cd-unit">'+l+'</span></div>').join('')}
 tick();setInterval(tick,1000);
 
 // Matrix countdown
